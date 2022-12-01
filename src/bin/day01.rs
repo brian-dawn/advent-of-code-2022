@@ -20,13 +20,7 @@ fn main() -> Result<()> {
         .into_iter()
         .group_by(|x| x.is_some())
         .into_iter()
-        .filter_map(|(k, group)| {
-            if k {
-                group.collect::<Option<Vec<_>>>()
-            } else {
-                None
-            }
-        })
+        .filter_map(|(_, group)| group.collect::<Option<Vec<_>>>())
         .map(|group| group.into_iter().sum::<i32>())
         .sorted()
         .rev();
